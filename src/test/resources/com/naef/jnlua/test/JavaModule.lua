@@ -1,11 +1,11 @@
 --[[
-$Id: JavaModule.lua,v 1.1 2008/10/28 16:36:48 anaef Exp $
+$Id: JavaModule.lua 157 2012-10-05 23:00:17Z andre@naef.com $
 See LICENSE.txt for license terms.
 ]]
 
 module(..., package.seeall)
 
--- java.require() test
+-- java.require()
 function testRequire ()
 	-- No import
 	local class, imported = java.require("java.lang.System")

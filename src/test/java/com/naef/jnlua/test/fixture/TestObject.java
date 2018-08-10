@@ -1,5 +1,5 @@
 /*
- * $Id: TestObject.java 156 2012-10-05 22:57:25Z andre@naef.com $
+ * $Id: TestObject.java 157 2012-10-05 23:00:17Z andre@naef.com $
  * See LICENSE.txt for license terms.
  */
 

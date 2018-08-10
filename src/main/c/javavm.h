@@ -1,5 +1,5 @@
 /*
- * $Id: javavm.h 131 2012-01-23 20:25:29Z andre@naef.com $
+ * $Id: javavm.h 130 2012-01-23 20:24:51Z andre@naef.com $
  * Provides the Java VM module. See LICENSE.txt for license terms.
  */
 

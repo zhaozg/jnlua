@@ -1,5 +1,5 @@
 --[[
-$Id: Reflection.lua,v 1.1 2008/10/28 16:36:48 anaef Exp $
+$Id: Reflection.lua 157 2012-10-05 23:00:17Z andre@naef.com $
 See LICENSE.txt for license terms.
 ]]
 
@@ -72,13 +72,26 @@ function testMeta ()
 	local testObject1 = TestObject:new(1)
 	local testObject2 = TestObject:new(2)
 	
-	-- Equality
+	-- __index
+	local int = java.require("int")
+	local intArray = java.new(int, 2)
+	assert(intArray[1] == 0)
+	assert(intArray[2] == 0)
+		
+	-- __newindex
+	intArray[1] = 1
+	assert(intArray[1] == 1)
+	
+	-- __len
+	assert(#intArray == 2)
+	
+	-- __eq
 	assert(testObject1 ~= testObject2)
 	testObject2.value = 1
 	assert(testObject1 == testObject2)
 	testObject2.value = 2
 	
-	-- Comparison
+	-- __lt, __le
 	assert(testObject1 < testObject2)
 	assert(testObject2 <= testObject2)
 	testObject1.value = 2
@@ -88,9 +101,26 @@ function testMeta ()
 	testObject1.value = 1
 	testObject2.value = 2
 	
-	-- String
+	-- __tostring
 	assert(tostring(testObject1) == "1")
 	assert(tostring(testObject2) == "2")
+	
+	-- __pairs
+	local HashMap = java.require("java.util.HashMap")
+	local hashMap = HashMap:new()
+	hashMap:put("k", "v")
+	local cnt = 0
+	for k, v in pairs(hashMap) do
+		if k == "k" and v == "v" then cnt = cnt + 1 end
+	end
+	assert(cnt == 1)
+	
+	-- ipairs
+	cnt = 0
+	for i, j in ipairs(intArray) do
+		cnt = cnt + 1
+	end
+	assert(cnt == 2)
 end
 
 -- Overloaded method dispatch test
